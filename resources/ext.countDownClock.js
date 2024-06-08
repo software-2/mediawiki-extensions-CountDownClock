@@ -4,11 +4,12 @@
     var x = setInterval(
         function () {
 
-                var endTime = mw.config.get('endTime').replace(/-/g, "/");
+                var endTime = new Date(mw.config.get('endTime').replace(" ", "T") + 'Z');
                 var countDownDate = new Date( endTime ).getTime();
 
                 // Get current date and time
-                var currentTime = new Date().getTime();
+                var currentTime = new Date();
+                currentTime = new Date(currentTime.toISOString().slice(0, 19) + 'Z'); //UTC
 
                 // Find the distance between now and the count down date
                 var remainingTime = countDownDate - currentTime;
